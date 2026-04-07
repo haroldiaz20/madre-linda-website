@@ -1,5 +1,28 @@
 import React, { useEffect, useRef } from 'react';
-import './Clients.css';
+import {
+  Section,
+  BgGlowLeft,
+  BgGlowRight,
+  Container,
+  Header,
+  Label,
+  Title,
+  TitleAccent,
+  Subtitle,
+  Grid,
+  Card,
+  Stars,
+  Star,
+  Quote,
+  Author,
+  Avatar,
+  Name,
+  Role,
+  Logos,
+  LogosText,
+  LogosRow,
+  LogoPill,
+} from './styles';
 
 const testimonials = [
   {
@@ -58,12 +81,14 @@ const testimonials = [
   },
 ];
 
-const StarRating = ({ rating }) => (
-  <div className="clients__stars">
+const StarRating = ({ rating, testId }) => (
+  <Stars data-testid={testId}>
     {Array.from({ length: rating }).map((_, i) => (
-      <span key={i} className="clients__star">★</span>
+      <Star key={i} data-testid={`${testId}-star-${i}`}>
+        ★
+      </Star>
     ))}
-  </div>
+  </Stars>
 );
 
 const Clients = () => {
@@ -74,72 +99,95 @@ const Clients = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('clients__card--visible');
+            entry.target.setAttribute('data-visible', 'true');
           }
         });
       },
       { threshold: 0.1 }
     );
 
-    const cards = sectionRef.current?.querySelectorAll('.clients__card');
+    const cards = sectionRef.current?.querySelectorAll('[data-clients-card]');
     cards?.forEach((card) => observer.observe(card));
 
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="clients" className="clients" ref={sectionRef}>
-      <div className="clients__bg-glow clients__bg-glow--left" />
-      <div className="clients__bg-glow clients__bg-glow--right" />
+    <Section id="clients" ref={sectionRef} data-testid="clients">
+      <BgGlowLeft data-testid="clients-bg-glow-left" />
+      <BgGlowRight data-testid="clients-bg-glow-right" />
 
-      <div className="clients__container">
-        <div className="clients__header">
-          <span className="clients__label">Testimonials</span>
-          <h2 className="clients__title">
+      <Container data-testid="clients-container">
+        <Header data-testid="clients-header">
+          <Label data-testid="clients-label">Testimonials</Label>
+          <Title data-testid="clients-title">
             Trusted by
-            <span className="clients__title-accent"> Happy Clients</span>
-          </h2>
-          <p className="clients__subtitle">
+            <TitleAccent> Happy Clients</TitleAccent>
+          </Title>
+          <Subtitle data-testid="clients-subtitle">
             We measure our success by the results we deliver and the relationships
             we build along the way.
-          </p>
-        </div>
+          </Subtitle>
+        </Header>
 
-        <div className="clients__grid">
+        <Grid data-testid="clients-testimonial-grid">
           {testimonials.map((client, index) => (
-            <div
+            <Card
               key={index}
-              className="clients__card"
+              data-clients-card
+              data-testid={`clients-testimonial-card-${index}`}
               style={{ transitionDelay: `${index * 0.1}s` }}
             >
-              <StarRating rating={client.rating} />
-              <p className="clients__quote">"{client.text}"</p>
-              <div className="clients__author">
-                <div
-                  className="clients__avatar"
-                  style={{ background: `linear-gradient(135deg, ${client.color}, ${client.color}99)` }}
+              <StarRating
+                rating={client.rating}
+                testId={`clients-stars-${index}`}
+              />
+              <Quote data-testid={`clients-quote-${index}`}>
+                "{client.text}"
+              </Quote>
+              <Author data-testid={`clients-author-${index}`}>
+                <Avatar
+                  data-testid={`clients-avatar-${index}`}
+                  style={{
+                    background: `linear-gradient(135deg, ${client.color}, ${client.color}99)`,
+                  }}
                 >
                   {client.avatar}
-                </div>
+                </Avatar>
                 <div>
-                  <p className="clients__name">{client.name}</p>
-                  <p className="clients__role">{client.role}</p>
+                  <Name data-testid={`clients-name-${index}`}>
+                    {client.name}
+                  </Name>
+                  <Role data-testid={`clients-role-${index}`}>
+                    {client.role}
+                  </Role>
                 </div>
-              </div>
-            </div>
+              </Author>
+            </Card>
           ))}
-        </div>
+        </Grid>
 
-        <div className="clients__logos">
-          <p className="clients__logos-text">Worked with teams from</p>
-          <div className="clients__logos-row">
-            {['NovaTech', 'DataBridge AI', 'GreenRoute', 'FinPulse', 'MedSync', 'EduLaunch'].map((name) => (
-              <span key={name} className="clients__logo-pill">{name}</span>
+        <Logos data-testid="clients-logos">
+          <LogosText data-testid="clients-logos-heading">
+            Worked with teams from
+          </LogosText>
+          <LogosRow data-testid="clients-logos-row">
+            {[
+              'NovaTech',
+              'DataBridge AI',
+              'GreenRoute',
+              'FinPulse',
+              'MedSync',
+              'EduLaunch',
+            ].map((name) => (
+              <LogoPill key={name} data-testid={`clients-logo-pill-${name.replace(/\s+/g, '-').toLowerCase()}`}>
+                {name}
+              </LogoPill>
             ))}
-          </div>
-        </div>
-      </div>
-    </section>
+          </LogosRow>
+        </Logos>
+      </Container>
+    </Section>
   );
 };
 
