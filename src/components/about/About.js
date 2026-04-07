@@ -1,5 +1,18 @@
 import React, { useEffect, useRef } from 'react';
-import './About.css';
+import {
+  Section,
+  Container,
+  Header,
+  Label,
+  Title,
+  TitleAccent,
+  Description,
+  Grid,
+  Card,
+  CardIcon,
+  CardTitle,
+  CardText,
+} from './styles';
 
 const features = [
   {
@@ -48,51 +61,52 @@ const About = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('about__card--visible');
+            entry.target.setAttribute('data-visible', 'true');
           }
         });
       },
       { threshold: 0.15 }
     );
 
-    const cards = sectionRef.current?.querySelectorAll('.about__card');
+    const cards = sectionRef.current?.querySelectorAll('[data-about-card]');
     cards?.forEach((card) => observer.observe(card));
 
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="about" className="about" ref={sectionRef}>
-      <div className="about__container">
-        <div className="about__header">
-          <span className="about__label">Who We Are</span>
-          <h2 className="about__title">
+    <Section id="about" ref={sectionRef} data-testid="about">
+      <Container data-testid="about-container">
+        <Header data-testid="about-header">
+          <Label data-testid="about-label">Who We Are</Label>
+          <Title data-testid="about-title">
             Crafting Software That
-            <span className="about__title-accent"> Makes a Difference</span>
-          </h2>
-          <p className="about__description">
+            <TitleAccent> Makes a Difference</TitleAccent>
+          </Title>
+          <Description data-testid="about-description">
             Madre Linda Labs is a boutique software development studio dedicated to
             building exceptional digital products. Founded by a passionate developer,
             we partner with startups, businesses, and entrepreneurs to transform ideas
             into polished, production-ready software.
-          </p>
-        </div>
+          </Description>
+        </Header>
 
-        <div className="about__grid">
+        <Grid data-testid="about-feature-grid">
           {features.map((feature, index) => (
-            <div
+            <Card
               key={index}
-              className="about__card"
+              data-about-card
+              data-testid={`about-feature-card-${index}`}
               style={{ transitionDelay: `${index * 0.1}s` }}
             >
-              <div className="about__card-icon">{feature.icon}</div>
-              <h3 className="about__card-title">{feature.title}</h3>
-              <p className="about__card-text">{feature.description}</p>
-            </div>
+              <CardIcon>{feature.icon}</CardIcon>
+              <CardTitle>{feature.title}</CardTitle>
+              <CardText>{feature.description}</CardText>
+            </Card>
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Container>
+    </Section>
   );
 };
 

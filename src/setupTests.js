@@ -14,3 +14,5 @@ global.IntersectionObserver = class {
 
 // Mock window.scrollTo and scroll event support
 Object.defineProperty(window, 'scrollTo', { value: jest.fn(), writable: true });
+
+Element.prototype.scrollIntoView = jest.fn();

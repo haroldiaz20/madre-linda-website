@@ -1,19 +1,27 @@
-import './App.css';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Clients from './components/Clients';
-import Contact from './components/Contact';
+import styled from 'styled-components';
+import GlobalStyle from './styles/GlobalStyle';
+import Navbar from './components/navbar/Navbar';
+import Hero from './components/hero/Hero';
+import About from './components/about/About';
+import Clients from './components/clients/Clients';
+import Contact from './components/contact/Contact';
+
+const AppRoot = styled.div`
+  min-height: 100vh;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Hero />
-      <About />
-      <Clients />
-      <Contact />
-    </div>
+    <>
+      <GlobalStyle />
+      <AppRoot data-testid="app-root">
+        <Navbar />
+        <Hero />
+        <About />
+        <Clients />
+        <Contact />
+      </AppRoot>
+    </>
   );
 }
 
