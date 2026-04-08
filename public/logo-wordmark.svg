@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 240" role="img" aria-label="Madre Linda Labs wordmark">
+  <title>Madre Linda Labs</title>
+  <g transform="translate(24 24)">
+    <g fill="none" stroke="#72A8FF" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="96" cy="96" r="60" stroke-width="6" />
+      <path d="M96 28V164M28 96H164M48 48L144 144M144 48L48 144" stroke-width="5" />
+      <ellipse cx="96" cy="96" rx="40" ry="60" stroke-width="4.2" transform="rotate(45 96 96)" />
+      <ellipse cx="96" cy="96" rx="40" ry="60" stroke-width="4.2" transform="rotate(-45 96 96)" />
+    </g>
+    <circle cx="96" cy="96" r="19" fill="#72A8FF" />
+    <path d="M96 82L100 90.5L109 91.3L102 97.2L104 106L96 101.3L88 106L90 97.2L83 91.3L92 90.5Z" fill="#FFFFFF" />
+  </g>
+  <text
+    x="250"
+    y="138"
+    fill="#183154"
+    font-family="'Space Grotesk', 'Montserrat', Arial, sans-serif"
+    font-size="76"
+    font-weight="500"
+    letter-spacing="1.5"
+  >
+    MADRE LINDA LABS
+  </text>
+</svg>

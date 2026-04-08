@@ -13,6 +13,7 @@ import {
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [brandScale, setBrandScale] = useState(1.55);
   const [menuOpen, setMenuOpen] = useState(false);
   const [peekNav, setPeekNav] = useState(false);
   const { ref: setHeroRef, inView: inFirstSection } = useInView({
@@ -25,6 +26,8 @@ const Navbar = () => {
     const handleScroll = () => {
       const y = window.scrollY;
       setScrolled(y > 40);
+      const scale = Math.max(1, 1.55 - y / 220);
+      setBrandScale(scale);
     };
     window.addEventListener('scroll', handleScroll);
     handleScroll();
@@ -63,9 +66,19 @@ const Navbar = () => {
           if (!inFirstSection && !menuOpen) setPeekNav(false);
         }}
       >
-        <Brand onClick={() => scrollToSection('hero')} data-testid="navbar-brand">
-          <Logo>ML</Logo>
-          <Name>Madre Linda Labs</Name>
+        <Brand
+          $scale={brandScale}
+          onClick={() => scrollToSection('hero')}
+          data-testid="navbar-brand"
+        >
+          <Logo
+            src="/logo.svg"
+            alt="Logo de Madre Linda Labs"
+            width={32}
+            height={32}
+            loading="eager"
+          />
+          <Name>MADRE LINDA LABS</Name>
         </Brand>
 
         <Burger

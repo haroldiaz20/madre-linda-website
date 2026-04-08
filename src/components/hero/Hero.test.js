@@ -18,9 +18,11 @@ describe("Hero", () => {
     );
     expect(screen.getByTestId("hero-title")).toHaveTextContent(/TI/);
     expect(screen.getByTestId("hero-subtitle")).toHaveTextContent(
-      /Madre Linda Labs/,
+      /software mas seguro y confiable/i,
     );
-    expect(screen.getByTestId("hero-subtitle")).toHaveTextContent(/Lima/);
+    expect(screen.getByTestId("hero-subtitle")).toHaveTextContent(
+      /soluciones a medida/i,
+    );
     expect(screen.getByTestId("hero-cta-contact")).toHaveTextContent(
       "Reserva una cita",
     );

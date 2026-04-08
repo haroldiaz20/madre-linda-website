@@ -46,10 +46,16 @@ const Contact = () => {
 
       <Footer data-testid="contact-footer">
         <FooterLinks>
-          <FooterLink href="#terms" data-testid="contact-footer-terms">
+          <FooterLink
+            href="/terms-and-support.html"
+            data-testid="contact-footer-terms"
+          >
             Términos y soporte
           </FooterLink>
-          <FooterLink href="#privacy" data-testid="contact-footer-privacy">
+          <FooterLink
+            href="/privacy-policy.html"
+            data-testid="contact-footer-privacy"
+          >
             Política de privacidad
           </FooterLink>
         </FooterLinks>

@@ -1,15 +1,15 @@
 /** Design tokens aligned with madrelinda.my.canva.site */
 export const theme = {
   colors: {
-    bg: '#0d1b2a',
-    bgDeep: '#0a1628',
-    /** Matches reference: rgb(189, 243, 71) */
-    lime: '#bdf347',
-    limeHover: '#c9f560',
+    // Calmer, premium palette: deeper blue + muted teal accent
+    bg: '#1f3f78',
+    bgDeep: '#163666',
+    lime: '#63c8c2',
+    limeHover: '#7fd8d3',
     white: '#ffffff',
     muted: 'rgba(255, 255, 255, 0.88)',
-    cyan: '#22d3ee',
-    blackBar: '#0a0a0a',
+    cyan: '#8fe3df',
+    blackBar: '#112d57',
   },
   font: {
     sans: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",

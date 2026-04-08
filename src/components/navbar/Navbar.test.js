@@ -7,7 +7,8 @@ describe('Navbar', () => {
     render(<Navbar />);
     expect(screen.getByTestId('navbar')).toBeInTheDocument();
     expect(screen.getByTestId('navbar-brand')).toBeInTheDocument();
-    expect(screen.getByTestId('navbar-brand')).toHaveTextContent('Madre Linda Labs');
+    expect(screen.getByAltText('Logo de Madre Linda Labs')).toBeInTheDocument();
+    expect(screen.getByTestId('navbar-brand')).toHaveTextContent('MADRE LINDA LABS');
   });
 
   it('exposes navigation links and CTA', () => {

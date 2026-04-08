@@ -32,7 +32,8 @@ const Hero = () => {
             <TitleRest>TI.</TitleRest>
           </Title>
           <Subtitle data-testid="hero-subtitle">
-            Madre Linda Labs · Lima, Perú
+            Ayudamos a empresas a hacer su software mas seguro y confiable.
+            Identificamos problemas y los resolvemos con soluciones a medida.
           </Subtitle>
           <Actions data-testid="hero-actions">
             <BtnPrimary
