@@ -21,7 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "pnpm run build && wrangler deploy",
+    "preview": "pnpm run build && wrangler dev"
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +52,7 @@
   },
   "devDependencies": {
     "eslint": "^8.57.1",
-    "eslint-config-react-app": "^7.0.1"
+    "eslint-config-react-app": "^7.0.1",
+    "wrangler": "^4.81.0"
   }
 }
