@@ -7,7 +7,7 @@ describe('Navbar', () => {
     render(<Navbar />);
     expect(screen.getByTestId('navbar')).toBeInTheDocument();
     expect(screen.getByTestId('navbar-brand')).toBeInTheDocument();
-    expect(screen.getByTestId('navbar-brand')).toHaveTextContent('García y Molina');
+    expect(screen.getByTestId('navbar-brand')).toHaveTextContent('Madre Linda Labs');
   });
 
   it('exposes navigation links and CTA', () => {

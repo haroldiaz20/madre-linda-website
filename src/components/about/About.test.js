@@ -17,8 +17,14 @@ describe('About', () => {
   it('renders three team cards', () => {
     render(<About />);
     expect(screen.getByTestId('about-feature-grid')).toBeInTheDocument();
-    expect(screen.getByTestId('about-feature-card-0')).toHaveTextContent('Eduardo Andrade');
-    expect(screen.getByTestId('about-feature-card-1')).toHaveTextContent('Isabel Parra');
-    expect(screen.getByTestId('about-feature-card-2')).toHaveTextContent('Claudio Alvarado');
+    expect(screen.getByTestId('about-feature-card-0')).toHaveTextContent(
+      'Eduardo Andrade'
+    );
+    expect(screen.getByTestId('about-feature-card-1')).toHaveTextContent(
+      'Isabel Parra'
+    );
+    expect(screen.getByTestId('about-feature-card-2')).toHaveTextContent(
+      'Claudio Alvarado'
+    );
   });
 });

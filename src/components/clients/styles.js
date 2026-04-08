@@ -1,28 +1,35 @@
-import styled from 'styled-components';
-import { theme } from '../../styles/theme';
+import styled from "styled-components";
+import { theme } from "../../styles/theme";
 
 export const Section = styled.section`
   background: ${theme.colors.bg};
-  padding: 2rem 1.5rem 5rem;
+  min-height: 100vh;
+  scroll-margin-top: 82px;
+  padding: 4.75rem 1.5rem 5rem;
   position: relative;
   overflow: hidden;
 
   @media (min-width: 768px) {
-    padding: 2rem 2.5rem 6rem;
+    padding: 5.25rem 2.5rem 6rem;
   }
 `;
 
 export const BgGlobeHint = styled.div`
   position: absolute;
-  bottom: -80px;
-  right: -120px;
-  width: 320px;
-  height: 320px;
-  opacity: 0.2;
+  right: -36px;
+  bottom: -28px;
+  width: 260px;
+  height: 130px;
+  opacity: 0.75;
   pointer-events: none;
 
   @media (max-width: 700px) {
     display: none;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -34,17 +41,21 @@ export const NarrowWrap = styled.div`
 `;
 
 export const Header = styled.header`
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+
+  @media (min-width: 768px) {
+    margin-bottom: 5rem;
+  }
 `;
 
 export const Title = styled.h2`
   font-family: ${theme.font.sans};
-  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 800;
   color: ${theme.colors.white};
   margin: 0;
-  padding-bottom: 0.65rem;
-  line-height: 1.15;
+  padding-bottom: 0.5rem;
+  line-height: 1;
   border-bottom: 5px solid ${theme.colors.lime};
   display: inline-block;
   width: auto;
@@ -55,11 +66,11 @@ export const Title = styled.h2`
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 4rem;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 5rem;
   }
 `;
 
@@ -70,21 +81,42 @@ export const ServiceCard = styled.div`
 export const IconWrap = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 1.25rem;
-  min-height: 140px;
+  margin-bottom: 2rem;
+  min-height: 220px;
   align-items: center;
 
   svg {
-    width: 120px;
-    height: 120px;
+    width: 220px;
+    height: 220px;
+  }
+
+  @media (min-width: 768px) {
+    min-height: 280px;
+
+    svg {
+      width: 280px;
+      height: 280px;
+    }
+  }
+`;
+
+export const IconAsset = styled.img`
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  display: block;
+
+  @media (min-width: 768px) {
+    width: 280px;
+    height: 280px;
   }
 `;
 
 export const Label = styled.p`
   font-family: ${theme.font.sans};
-  font-size: 1rem;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
   font-weight: 600;
   color: ${theme.colors.white};
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.3;
 `;

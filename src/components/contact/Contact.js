@@ -6,6 +6,7 @@ import {
   Container,
   Left,
   Title,
+  TitleWhite,
   CtaLine,
   EmailLink,
   Right,
@@ -15,7 +16,7 @@ import {
   FooterCredit,
 } from './styles';
 
-const CONTACT_EMAIL = 'hola@sitioincreible.co';
+const CONTACT_EMAIL = 'contacto@madrelindalabs.com';
 
 const Contact = () => {
   return (
@@ -24,7 +25,8 @@ const Contact = () => {
       <Container data-testid="contact-container">
         <Left data-testid="contact-column-info">
           <Title data-testid="contact-title">
-            Sin importar cuál sea tu necesidad, podemos resolverlo para TI.
+            Sin importar cuál sea tu necesidad, podemos resolverlo para{' '}
+            <TitleWhite>TI.</TitleWhite>
           </Title>
           <CtaLine data-testid="contact-description">
             Reserva una consulta en{' '}
@@ -45,14 +47,14 @@ const Contact = () => {
       <Footer data-testid="contact-footer">
         <FooterLinks>
           <FooterLink href="#terms" data-testid="contact-footer-terms">
-            Terms &amp; Support
+            Términos y soporte
           </FooterLink>
           <FooterLink href="#privacy" data-testid="contact-footer-privacy">
-            Privacy Policy
+            Política de privacidad
           </FooterLink>
         </FooterLinks>
         <FooterCredit data-testid="contact-footer-text">
-          © {new Date().getFullYear()} García y Molina
+          © {new Date().getFullYear()} Madre Linda Labs E.I.R.L · Lima, Perú
         </FooterCredit>
       </Footer>
     </Section>

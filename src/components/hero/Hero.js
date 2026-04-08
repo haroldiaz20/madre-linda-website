@@ -32,7 +32,7 @@ const Hero = () => {
             <TitleRest>TI.</TitleRest>
           </Title>
           <Subtitle data-testid="hero-subtitle">
-            García y Molina, asesores informáticos
+            Madre Linda Labs · Lima, Perú
           </Subtitle>
           <Actions data-testid="hero-actions">
             <BtnPrimary

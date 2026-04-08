@@ -12,7 +12,7 @@ describe('Contact', () => {
     expect(screen.getByTestId('contact-description')).toHaveTextContent(/Reserva una consulta/);
     expect(screen.getByTestId('contact-info-email')).toHaveAttribute(
       'href',
-      'mailto:hola@sitioincreible.co'
+      'mailto:contacto@madrelindalabs.com'
     );
   });
 
@@ -24,8 +24,11 @@ describe('Contact', () => {
   it('renders footer links and credit', () => {
     render(<Contact />);
     expect(screen.getByTestId('contact-footer')).toBeInTheDocument();
-    expect(screen.getByTestId('contact-footer-terms')).toHaveTextContent(/Terms/);
-    expect(screen.getByTestId('contact-footer-privacy')).toHaveTextContent(/Privacy/);
-    expect(screen.getByTestId('contact-footer-text')).toHaveTextContent(/García y Molina/);
+    expect(screen.getByTestId('contact-footer-terms')).toHaveTextContent(/Términos/);
+    expect(screen.getByTestId('contact-footer-privacy')).toHaveTextContent(/Política/);
+    expect(screen.getByTestId('contact-footer-text')).toHaveTextContent(
+      /Madre Linda Labs E\.I\.R\.L/
+    );
+    expect(screen.getByTestId('contact-footer-text')).toHaveTextContent(/Lima/);
   });
 });

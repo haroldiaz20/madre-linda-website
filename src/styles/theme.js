@@ -3,8 +3,9 @@ export const theme = {
   colors: {
     bg: '#0d1b2a',
     bgDeep: '#0a1628',
-    lime: '#c8f04a',
-    limeHover: '#d4f56a',
+    /** Matches reference: rgb(189, 243, 71) */
+    lime: '#bdf347',
+    limeHover: '#c9f560',
     white: '#ffffff',
     muted: 'rgba(255, 255, 255, 0.88)',
     cyan: '#22d3ee',

@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { theme } from '../../styles/theme';
+import styled, { css } from "styled-components";
+import { theme } from "../../styles/theme";
 
 export const Nav = styled.nav`
   position: fixed;
@@ -11,7 +11,11 @@ export const Nav = styled.nav`
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1.5rem;
-  transition: background 0.35s ease, box-shadow 0.35s ease;
+  transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.3s ease,
+    opacity 0.25s ease;
+  transform: translateY(${(p) => (p.$visible ? "0" : "-115%")});
+  opacity: ${(p) => (p.$visible ? 1 : 0)};
+  pointer-events: ${(p) => (p.$visible ? "auto" : "none")};
 
   ${(p) =>
     p.$scrolled &&
@@ -24,6 +28,15 @@ export const Nav = styled.nav`
   @media (min-width: 769px) {
     padding: 1.1rem 2.5rem;
   }
+`;
+
+export const NavHotspot = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 18px;
+  z-index: 1001;
 `;
 
 export const Brand = styled.div`
@@ -103,7 +116,7 @@ export const Burger = styled.button`
 export const Links = styled.ul`
   display: flex;
   align-items: center;
-  gap: 0.15rem;
+  gap: 0.5rem;
   list-style: none;
   margin: 0;
   padding: 0;

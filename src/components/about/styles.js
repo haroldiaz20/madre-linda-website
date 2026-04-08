@@ -1,13 +1,14 @@
-import styled from 'styled-components';
-import { theme } from '../../styles/theme';
+import styled from "styled-components";
+import { theme } from "../../styles/theme";
 
 export const Section = styled.section`
   background: ${theme.colors.bg};
-  padding: 4rem 1.5rem 5rem;
+  min-height: 100vh;
+  padding: 4.25rem 1.5rem 4.25rem;
   position: relative;
 
   @media (min-width: 768px) {
-    padding: 5rem 2.5rem 6rem;
+    padding: 4.6rem 2.5rem 4.8rem;
   }
 `;
 
@@ -17,22 +18,26 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.header`
-  margin-bottom: 2.75rem;
+  margin-bottom: 3rem;
 `;
 
 export const Title = styled.h2`
   font-family: ${theme.font.sans};
-  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  font-size: clamp(2.1rem, 4.6vw, 3.9rem);
   font-weight: 800;
   color: ${theme.colors.white};
   margin: 0;
-  padding-bottom: 0.65rem;
-  line-height: 1.15;
+  padding-bottom: 0.42rem;
+  line-height: 1.03;
   border-bottom: 5px solid ${theme.colors.lime};
   display: inline-block;
   width: auto;
   max-width: 100%;
   box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    white-space: nowrap;
+  }
 `;
 
 export const Grid = styled.div`
@@ -52,11 +57,11 @@ export const Card = styled.article`
 
 export const PhotoWrap = styled.div`
   width: 100%;
-  aspect-ratio: 1;
-  max-width: 280px;
-  margin: 0 auto 1.25rem;
+  aspect-ratio: 3 / 4;
+  max-width: 360px;
+  margin: 0 auto 1.2rem;
   overflow: hidden;
-  border: 2px solid rgba(200, 240, 74, 0.35);
+  border-radius: 4px;
   background: ${theme.colors.bgDeep};
 `;
 
@@ -69,17 +74,18 @@ export const Photo = styled.img`
 
 export const Name = styled.h3`
   font-family: ${theme.font.sans};
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-weight: 600;
   color: ${theme.colors.white};
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.3rem;
+  letter-spacing: 0.01em;
 `;
 
 export const Role = styled.p`
   font-family: ${theme.font.sans};
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: ${theme.colors.muted};
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
   margin: 0;
-  line-height: 1.45;
+  line-height: 1.4;
 `;

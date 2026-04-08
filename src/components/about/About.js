@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Section,
   Container,
@@ -10,26 +10,29 @@ import {
   Photo,
   Name,
   Role,
-} from './styles';
+} from "./styles";
 
 const TEAM = [
   {
-    name: 'Eduardo Andrade',
-    role: 'Director general de operaciones',
+    key: "eduardo",
+    name: "Eduardo Andrade",
+    role: "Director general de operaciones",
     image:
-      'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop',
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=900&h=700&fit=crop",
   },
   {
-    name: 'Isabel Parra',
-    role: 'Directora ejecutiva',
+    key: "isabel",
+    name: "Isabel Parra",
+    role: "Directora ejecutiva",
     image:
-      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop',
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&h=700&fit=crop",
   },
   {
-    name: 'Claudio Alvarado',
-    role: 'Director general de TI',
+    key: "claudio",
+    name: "Claudio Alvarado",
+    role: "Director general de TI",
     image:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop',
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=900&h=700&fit=crop",
   },
 ];
 
@@ -43,17 +46,14 @@ const About = () => {
 
         <Grid data-testid="about-feature-grid">
           {TEAM.map((member, index) => (
-            <Card
-              key={member.name}
-              data-testid={`about-feature-card-${index}`}
-            >
+            <Card key={member.key} data-testid={`about-feature-card-${index}`}>
               <PhotoWrap>
                 <Photo
                   src={member.image}
                   alt={member.name}
                   loading="lazy"
-                  width={400}
-                  height={400}
+                  width={900}
+                  height={700}
                 />
               </PhotoWrap>
               <Name>{member.name}</Name>
