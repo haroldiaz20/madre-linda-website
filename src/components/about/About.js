@@ -1,107 +1,63 @@
-import React, { useEffect, useRef } from 'react';
+import React from "react";
 import {
   Section,
   Container,
   Header,
-  Label,
   Title,
-  TitleAccent,
-  Description,
   Grid,
   Card,
-  CardIcon,
-  CardTitle,
-  CardText,
-} from './styles';
+  PhotoWrap,
+  Photo,
+  Name,
+  Role,
+} from "./styles";
 
-const features = [
+const TEAM = [
   {
-    icon: '⚡',
-    title: 'High-Performance Apps',
-    description:
-      'We build blazing-fast applications optimized for performance, scalability, and seamless user experiences.',
+    key: "eduardo",
+    name: "Eduardo Andrade",
+    role: "Director general de operaciones",
+    image:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=900&h=700&fit=crop",
   },
   {
-    icon: '🎨',
-    title: 'Modern UI/UX Design',
-    description:
-      'Beautiful, intuitive interfaces that captivate users and drive engagement from the first interaction.',
+    key: "isabel",
+    name: "Isabel Parra",
+    role: "Directora ejecutiva",
+    image:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&h=700&fit=crop",
   },
   {
-    icon: '🔒',
-    title: 'Secure by Default',
-    description:
-      'Security is baked into every layer of our development process, protecting your data and your users.',
-  },
-  {
-    icon: '📱',
-    title: 'Mobile-First',
-    description:
-      'Every solution we craft is fully responsive and optimized for the devices your customers use every day.',
-  },
-  {
-    icon: '🚀',
-    title: 'Rapid Delivery',
-    description:
-      'Agile workflows and clear communication ensure your project ships on time and within budget.',
-  },
-  {
-    icon: '🤝',
-    title: 'Long-Term Partnership',
-    description:
-      'We build lasting relationships, supporting your growth with ongoing maintenance and feature development.',
+    key: "claudio",
+    name: "Claudio Alvarado",
+    role: "Director general de TI",
+    image:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=900&h=700&fit=crop",
   },
 ];
 
 const About = () => {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.setAttribute('data-visible', 'true');
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    const cards = sectionRef.current?.querySelectorAll('[data-about-card]');
-    cards?.forEach((card) => observer.observe(card));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <Section id="about" ref={sectionRef} data-testid="about">
+    <Section id="equipo" data-testid="about">
       <Container data-testid="about-container">
         <Header data-testid="about-header">
-          <Label data-testid="about-label">Who We Are</Label>
-          <Title data-testid="about-title">
-            Crafting Software That
-            <TitleAccent> Makes a Difference</TitleAccent>
-          </Title>
-          <Description data-testid="about-description">
-            Madre Linda Labs is a boutique software development studio dedicated to
-            building exceptional digital products. Founded by a passionate developer,
-            we partner with startups, businesses, and entrepreneurs to transform ideas
-            into polished, production-ready software.
-          </Description>
+          <Title data-testid="about-title">Conoce al equipo</Title>
         </Header>
 
         <Grid data-testid="about-feature-grid">
-          {features.map((feature, index) => (
-            <Card
-              key={index}
-              data-about-card
-              data-testid={`about-feature-card-${index}`}
-              style={{ transitionDelay: `${index * 0.1}s` }}
-            >
-              <CardIcon>{feature.icon}</CardIcon>
-              <CardTitle>{feature.title}</CardTitle>
-              <CardText>{feature.description}</CardText>
+          {TEAM.map((member, index) => (
+            <Card key={member.key} data-testid={`about-feature-card-${index}`}>
+              <PhotoWrap>
+                <Photo
+                  src={member.image}
+                  alt={member.name}
+                  loading="lazy"
+                  width={900}
+                  height={700}
+                />
+              </PhotoWrap>
+              <Name>{member.name}</Name>
+              <Role>{member.role}</Role>
             </Card>
           ))}
         </Grid>

@@ -7,30 +7,24 @@ describe('About', () => {
     expect(screen.getByTestId('about')).toBeInTheDocument();
     expect(screen.getByTestId('about-container')).toBeInTheDocument();
     expect(screen.getByTestId('about-header')).toBeInTheDocument();
-    expect(screen.getByTestId('about-label')).toHaveTextContent('Who We Are');
   });
 
-  it('renders title and description', () => {
+  it('renders team heading', () => {
     render(<About />);
-    expect(screen.getByTestId('about-title')).toHaveTextContent(
-      /Crafting Software That/
-    );
-    expect(screen.getByTestId('about-description')).toHaveTextContent(
-      /Madre Linda Labs is a boutique/
-    );
+    expect(screen.getByTestId('about-title')).toHaveTextContent('Conoce al equipo');
   });
 
-  it('renders feature grid and six feature cards', () => {
+  it('renders three team cards', () => {
     render(<About />);
     expect(screen.getByTestId('about-feature-grid')).toBeInTheDocument();
-    for (let i = 0; i < 6; i++) {
-      expect(screen.getByTestId(`about-feature-card-${i}`)).toBeInTheDocument();
-    }
-  });
-
-  it('includes expected first feature content', () => {
-    render(<About />);
-    const first = screen.getByTestId('about-feature-card-0');
-    expect(first).toHaveTextContent('High-Performance Apps');
+    expect(screen.getByTestId('about-feature-card-0')).toHaveTextContent(
+      'Eduardo Andrade'
+    );
+    expect(screen.getByTestId('about-feature-card-1')).toHaveTextContent(
+      'Isabel Parra'
+    );
+    expect(screen.getByTestId('about-feature-card-2')).toHaveTextContent(
+      'Claudio Alvarado'
+    );
   });
 });

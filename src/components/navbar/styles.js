@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
+import { theme } from "../../styles/theme";
 
 export const Nav = styled.nav`
   position: fixed;
@@ -9,27 +10,39 @@ export const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 2.5rem;
-  transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+  padding: 1rem 1.5rem;
+  transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.3s ease,
+    opacity 0.25s ease;
+  transform: translateY(${(p) => (p.$visible ? "0" : "-115%")});
+  opacity: ${(p) => (p.$visible ? 1 : 0)};
+  pointer-events: ${(p) => (p.$visible ? "auto" : "none")};
 
   ${(p) =>
     p.$scrolled &&
     css`
-      background: rgba(10, 10, 26, 0.95);
+      background: rgba(13, 27, 42, 0.92);
       backdrop-filter: blur(12px);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-      padding: 0.85rem 2.5rem;
+      box-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
     `}
 
-  @media (max-width: 768px) {
-    padding: 1rem 1.5rem;
+  @media (min-width: 769px) {
+    padding: 1.1rem 2.5rem;
   }
+`;
+
+export const NavHotspot = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 18px;
+  z-index: 1001;
 `;
 
 export const Brand = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.65rem;
   cursor: pointer;
 `;
 
@@ -37,21 +50,30 @@ export const Logo = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #7c3aed, #3b82f6);
-  border-radius: 10px;
-  color: #fff;
+  min-width: 42px;
+  height: 42px;
+  padding: 0 0.35rem;
+  background: ${theme.colors.lime};
+  color: ${theme.colors.bg};
+  border-radius: 4px;
   font-weight: 800;
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
+  font-size: 0.7rem;
+  line-height: 1.1;
+  text-align: center;
+  letter-spacing: 0.02em;
 `;
 
 export const Name = styled.span`
-  color: #fff;
+  color: ${theme.colors.white};
+  font-family: ${theme.font.sans};
   font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: 0.02em;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  letter-spacing: 0.01em;
+  max-width: 200px;
+
+  @media (min-width: 400px) {
+    max-width: none;
+  }
 `;
 
 export const Burger = styled.button`
@@ -71,7 +93,7 @@ export const Burger = styled.button`
     display: block;
     width: 24px;
     height: 2px;
-    background: #fff;
+    background: ${theme.colors.white};
     border-radius: 2px;
     transition: transform 0.3s, opacity 0.3s;
   }
@@ -94,7 +116,7 @@ export const Burger = styled.button`
 export const Links = styled.ul`
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -102,19 +124,19 @@ export const Links = styled.ul`
   li button {
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
     font-weight: 500;
-    padding: 0.5rem 1rem;
+    font-family: ${theme.font.sans};
+    padding: 0.45rem 0.75rem;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 4px;
     transition: color 0.2s, background 0.2s;
-    font-family: inherit;
   }
 
   li button:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.08);
+    color: ${theme.colors.lime};
+    background: rgba(200, 240, 74, 0.08);
   }
 
   @media (max-width: 768px) {
@@ -123,17 +145,17 @@ export const Links = styled.ul`
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(10, 10, 26, 0.98);
+    background: ${theme.colors.bgDeep};
     flex-direction: column;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.75rem;
     transform: translateX(100%);
     transition: transform 0.35s ease;
     pointer-events: none;
 
     li button {
-      font-size: 1.4rem;
-      padding: 0.8rem 2rem;
+      font-size: 1.25rem;
+      padding: 0.65rem 1.5rem;
     }
 
     ${(p) =>
@@ -146,16 +168,15 @@ export const Links = styled.ul`
 `;
 
 export const CtaButton = styled.button`
-  background: linear-gradient(135deg, #7c3aed, #3b82f6) !important;
-  color: #fff !important;
-  padding: 0.55rem 1.3rem !important;
-  border-radius: 50px !important;
-  font-weight: 600 !important;
-  transition: opacity 0.2s, transform 0.2s !important;
+  background: ${theme.colors.lime} !important;
+  color: ${theme.colors.bg} !important;
+  padding: 0.5rem 1.1rem !important;
+  border-radius: 4px !important;
+  font-weight: 700 !important;
+  font-family: ${theme.font.sans} !important;
 
   &:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
-    background: none !important;
+    background: ${theme.colors.limeHover} !important;
+    color: ${theme.colors.bg} !important;
   }
 `;

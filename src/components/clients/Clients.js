@@ -1,192 +1,135 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import {
   Section,
-  BgGlowLeft,
-  BgGlowRight,
-  Container,
+  BgGlobeHint,
+  NarrowWrap,
   Header,
-  Label,
   Title,
-  TitleAccent,
-  Subtitle,
   Grid,
-  Card,
-  Stars,
-  Star,
-  Quote,
-  Author,
-  Avatar,
-  Name,
-  Role,
-  Logos,
-  LogosText,
-  LogosRow,
-  LogoPill,
+  ServiceCard,
+  IconWrap,
+  IconAsset,
+  Label,
 } from './styles';
+import { theme } from '../../styles/theme';
 
-const testimonials = [
+const stroke = theme.colors.lime;
+
+function IconCyber() {
+  return (
+    <svg viewBox="0 0 120 120" fill="none" aria-hidden>
+      <circle cx="60" cy="60" r="42" stroke={stroke} strokeWidth="1.1" />
+      <circle cx="60" cy="60" r="30" stroke={stroke} strokeWidth="0.95" opacity="0.85" />
+      <ellipse cx="60" cy="60" rx="42" ry="19" stroke={stroke} strokeWidth="0.9" opacity="0.65" />
+      <ellipse cx="60" cy="60" rx="18" ry="42" stroke={stroke} strokeWidth="0.9" opacity="0.6" />
+      <path
+        d="M60 18 L60 102 M18 60 L102 60 M32 32 L88 88 M88 32 L32 88"
+        stroke={stroke}
+        strokeWidth="0.82"
+        opacity="0.56"
+      />
+    </svg>
+  );
+}
+
+function IconRisk() {
+  return (
+    <svg viewBox="0 0 120 120" fill="none" aria-hidden>
+      <path
+        d="M18 82 Q59 24 104 82"
+        stroke={stroke}
+        strokeWidth="1.2"
+        fill="none"
+      />
+      <path
+        d="M20 80 L100 80"
+        stroke={stroke}
+        strokeWidth="0.95"
+        opacity="0.85"
+      />
+      <path d="M26 74 Q58 38 93 72" stroke={stroke} strokeWidth="0.82" opacity="0.65" />
+      <path d="M33 66 Q59 45 86 64" stroke={stroke} strokeWidth="0.78" opacity="0.55" />
+      <path d="M42 58 Q60 48 77 57" stroke={stroke} strokeWidth="0.75" opacity="0.5" />
+      <path d="M58 28 L58 81 M70 36 L70 81 M46 42 L46 81" stroke={stroke} strokeWidth="0.74" opacity="0.45" />
+    </svg>
+  );
+}
+
+function IconStrategy() {
+  return (
+    <svg viewBox="0 0 120 120" fill="none" aria-hidden>
+      <circle cx="60" cy="60" r="42" stroke={stroke} strokeWidth="1.1" />
+      <path
+        d="M60 22 A38 38 0 0 1 98 60 L60 60 Z"
+        stroke={stroke}
+        strokeWidth="1.1"
+        fill="none"
+      />
+      <path d="M60 30 A30 30 0 0 1 90 60 L60 60 Z" stroke={stroke} strokeWidth="0.9" opacity="0.8" />
+      <path d="M60 38 A22 22 0 0 1 82 60 L60 60 Z" stroke={stroke} strokeWidth="0.82" opacity="0.66" />
+      <path d="M60 46 A14 14 0 0 1 74 60 L60 60 Z" stroke={stroke} strokeWidth="0.78" opacity="0.55" />
+      <path d="M26 42 Q44 34 60 60 M26 76 Q44 84 60 60" stroke={stroke} strokeWidth="0.72" opacity="0.5" />
+    </svg>
+  );
+}
+
+const SERVICES = [
   {
-    name: 'Sarah Mitchell',
-    role: 'CEO, NovaTech Ventures',
-    avatar: 'SM',
-    rating: 5,
-    text:
-      'Madre Linda Labs delivered an exceptional SaaS platform for us. Their attention to detail and code quality is unmatched. We went from idea to launch in just 3 months!',
-    color: '#7c3aed',
+    id: 'ciberseguridad',
+    label: 'Ciberseguridad',
+    asset: '/assets/servicios/vector-ciberseguridad.png',
+    alt: 'Vector de ciberseguridad',
+    Icon: IconCyber,
   },
+  { id: 'riesgos', label: 'Mitigar de riesgos', Icon: IconRisk },
   {
-    name: 'James Okonkwo',
-    role: 'Founder, DataBridge AI',
-    avatar: 'JO',
-    rating: 5,
-    text:
-      'Working with Madre Linda Labs was a game-changer. They understood our complex AI integration requirements and delivered a seamless, production-ready product on schedule.',
-    color: '#3b82f6',
-  },
-  {
-    name: 'Ana Carvalho',
-    role: 'CTO, GreenRoute Logistics',
-    avatar: 'AC',
-    rating: 5,
-    text:
-      'The team is incredibly talented and communicates clearly throughout the entire process. Our logistics dashboard has transformed how we manage operations. Highly recommend!',
-    color: '#06b6d4',
-  },
-  {
-    name: 'Marcus Lee',
-    role: 'Product Manager, FinPulse',
-    avatar: 'ML',
-    rating: 5,
-    text:
-      'Madre Linda Labs built our fintech mobile app with amazing precision and speed. The UI is beautiful, performance is top-notch, and our users love every interaction.',
-    color: '#7c3aed',
-  },
-  {
-    name: 'Elena Rossi',
-    role: 'Head of Engineering, MedSync',
-    avatar: 'ER',
-    rating: 5,
-    text:
-      'They handled our HIPAA-compliant medical platform with professionalism and expertise. Security, performance, and design all exceeded our expectations.',
-    color: '#3b82f6',
-  },
-  {
-    name: 'David Nguyen',
-    role: 'Co-founder, EduLaunch',
-    avatar: 'DN',
-    rating: 5,
-    text:
-      'From our e-learning platform to our mobile app, Madre Linda Labs has been our go-to partner. Reliable, talented, and genuinely invested in our success.',
-    color: '#06b6d4',
+    id: 'estrategias',
+    label: 'Desarrollo de estrategias TI',
+    asset: '/assets/servicios/vector-estrategias.png',
+    alt: 'Vector de estrategias TI',
+    Icon: IconStrategy,
   },
 ];
 
-const StarRating = ({ rating, testId }) => (
-  <Stars data-testid={testId}>
-    {Array.from({ length: rating }).map((_, i) => (
-      <Star key={i} data-testid={`${testId}-star-${i}`}>
-        ★
-      </Star>
-    ))}
-  </Stars>
-);
-
 const Clients = () => {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.setAttribute('data-visible', 'true');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const cards = sectionRef.current?.querySelectorAll('[data-clients-card]');
-    cards?.forEach((card) => observer.observe(card));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <Section id="clients" ref={sectionRef} data-testid="clients">
-      <BgGlowLeft data-testid="clients-bg-glow-left" />
-      <BgGlowRight data-testid="clients-bg-glow-right" />
+    <Section id="servicios" data-testid="clients">
+      <BgGlobeHint data-testid="clients-bg-glow-left">
+        <svg viewBox="0 0 260 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M14 126 C52 66 116 38 246 44" stroke="#ffffff" strokeOpacity="0.44" strokeWidth="1.1" />
+          <path d="M42 128 C82 68 138 42 258 52" stroke="#ffffff" strokeOpacity="0.36" strokeWidth="1.1" />
+          <path d="M78 130 C116 74 168 49 260 61" stroke="#ffffff" strokeOpacity="0.28" strokeWidth="1.05" />
+          <path d="M106 130 C141 80 189 58 260 71" stroke="#ffffff" strokeOpacity="0.24" strokeWidth="1.05" />
+          <path d="M136 130 C171 87 213 70 260 84" stroke="#ffffff" strokeOpacity="0.2" strokeWidth="1" />
+        </svg>
+      </BgGlobeHint>
 
-      <Container data-testid="clients-container">
+      <NarrowWrap data-testid="clients-container">
         <Header data-testid="clients-header">
-          <Label data-testid="clients-label">Testimonials</Label>
-          <Title data-testid="clients-title">
-            Trusted by
-            <TitleAccent> Happy Clients</TitleAccent>
-          </Title>
-          <Subtitle data-testid="clients-subtitle">
-            We measure our success by the results we deliver and the relationships
-            we build along the way.
-          </Subtitle>
+          <Title data-testid="clients-title">Servicios</Title>
         </Header>
 
-        <Grid data-testid="clients-testimonial-grid">
-          {testimonials.map((client, index) => (
-            <Card
-              key={index}
-              data-clients-card
-              data-testid={`clients-testimonial-card-${index}`}
-              style={{ transitionDelay: `${index * 0.1}s` }}
-            >
-              <StarRating
-                rating={client.rating}
-                testId={`clients-stars-${index}`}
-              />
-              <Quote data-testid={`clients-quote-${index}`}>
-                "{client.text}"
-              </Quote>
-              <Author data-testid={`clients-author-${index}`}>
-                <Avatar
-                  data-testid={`clients-avatar-${index}`}
-                  style={{
-                    background: `linear-gradient(135deg, ${client.color}, ${client.color}99)`,
-                  }}
-                >
-                  {client.avatar}
-                </Avatar>
-                <div>
-                  <Name data-testid={`clients-name-${index}`}>
-                    {client.name}
-                  </Name>
-                  <Role data-testid={`clients-role-${index}`}>
-                    {client.role}
-                  </Role>
-                </div>
-              </Author>
-            </Card>
+        <Grid data-testid="clients-carousel-shell">
+          {SERVICES.map(({ id, label, Icon, asset, alt }) => (
+            <ServiceCard key={id} data-testid={`clients-logo-${id}`}>
+              <IconWrap>
+                {asset ? (
+                  <IconAsset
+                    src={asset}
+                    alt={alt ?? label}
+                    loading="lazy"
+                    width={128}
+                    height={128}
+                  />
+                ) : (
+                  <Icon />
+                )}
+              </IconWrap>
+              <Label>{label}</Label>
+            </ServiceCard>
           ))}
         </Grid>
-
-        <Logos data-testid="clients-logos">
-          <LogosText data-testid="clients-logos-heading">
-            Worked with teams from
-          </LogosText>
-          <LogosRow data-testid="clients-logos-row">
-            {[
-              'NovaTech',
-              'DataBridge AI',
-              'GreenRoute',
-              'FinPulse',
-              'MedSync',
-              'EduLaunch',
-            ].map((name) => (
-              <LogoPill key={name} data-testid={`clients-logo-pill-${name.replace(/\s+/g, '-').toLowerCase()}`}>
-                {name}
-              </LogoPill>
-            ))}
-          </LogosRow>
-        </Logos>
-      </Container>
+      </NarrowWrap>
     </Section>
   );
 };
