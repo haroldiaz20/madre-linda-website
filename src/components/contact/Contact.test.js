@@ -26,6 +26,14 @@ describe('Contact', () => {
     expect(screen.getByTestId('contact-footer')).toBeInTheDocument();
     expect(screen.getByTestId('contact-footer-terms')).toHaveTextContent(/Términos/);
     expect(screen.getByTestId('contact-footer-privacy')).toHaveTextContent(/Política/);
+    expect(screen.getByTestId('contact-footer-terms')).toHaveAttribute(
+      'href',
+      '/terms-and-support.html'
+    );
+    expect(screen.getByTestId('contact-footer-privacy')).toHaveAttribute(
+      'href',
+      '/privacy-policy.html'
+    );
     expect(screen.getByTestId('contact-footer-text')).toHaveTextContent(
       /Madre Linda Labs E\.I\.R\.L/
     );

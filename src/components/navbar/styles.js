@@ -11,6 +11,7 @@ export const Nav = styled.nav`
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1.5rem;
+  background: transparent;
   transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.3s ease,
     opacity 0.25s ease;
   transform: translateY(${(p) => (p.$visible ? "0" : "-115%")});
@@ -20,9 +21,8 @@ export const Nav = styled.nav`
   ${(p) =>
     p.$scrolled &&
     css`
-      background: rgba(13, 27, 42, 0.92);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+      background: ${theme.colors.blackBar};
+      box-shadow: 0 2px 18px rgba(0, 0, 0, 0.18);
     `}
 
   @media (min-width: 769px) {
@@ -42,33 +42,27 @@ export const NavHotspot = styled.div`
 export const Brand = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.6rem;
   cursor: pointer;
+  transform-origin: left center;
+  transform: scale(${(p) => p.$scale || 1});
+  transition: transform 0.2s ease-out;
 `;
 
-export const Logo = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 42px;
-  height: 42px;
-  padding: 0 0.35rem;
-  background: ${theme.colors.lime};
-  color: ${theme.colors.bg};
-  border-radius: 4px;
-  font-weight: 800;
-  font-size: 0.7rem;
-  line-height: 1.1;
-  text-align: center;
-  letter-spacing: 0.02em;
+export const Logo = styled.img`
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 0;
+  display: block;
 `;
 
 export const Name = styled.span`
   color: ${theme.colors.white};
-  font-family: ${theme.font.sans};
-  font-weight: 700;
-  font-size: clamp(0.85rem, 2vw, 1rem);
-  letter-spacing: 0.01em;
+  font-family: "Space Grotesk", ${theme.font.sans};
+  font-weight: 600;
+  font-size: clamp(0.95rem, 1.8vw, 1.03rem);
+  letter-spacing: 0.005em;
   max-width: 200px;
 
   @media (min-width: 400px) {
@@ -116,7 +110,7 @@ export const Burger = styled.button`
 export const Links = styled.ul`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -124,8 +118,8 @@ export const Links = styled.ul`
   li button {
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.84rem;
     font-weight: 500;
     font-family: ${theme.font.sans};
     padding: 0.45rem 0.75rem;
@@ -135,8 +129,8 @@ export const Links = styled.ul`
   }
 
   li button:hover {
-    color: ${theme.colors.lime};
-    background: rgba(200, 240, 74, 0.08);
+    color: ${theme.colors.white};
+    background: rgba(255, 255, 255, 0.08);
   }
 
   @media (max-width: 768px) {
@@ -169,9 +163,9 @@ export const Links = styled.ul`
 
 export const CtaButton = styled.button`
   background: ${theme.colors.lime} !important;
-  color: ${theme.colors.bg} !important;
-  padding: 0.5rem 1.1rem !important;
-  border-radius: 4px !important;
+  color: #0f2f5f !important;
+  padding: 0.45rem 1rem !important;
+  border-radius: 6px !important;
   font-weight: 700 !important;
   font-family: ${theme.font.sans} !important;
 
