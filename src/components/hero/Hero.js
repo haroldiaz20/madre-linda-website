@@ -1,5 +1,7 @@
 import React from 'react';
 import WireframeGlobe from '../common/WireframeGlobe';
+import SectionReveal from '../common/SectionReveal';
+import { scrollToSection } from '../../utils/scrollToSection';
 import {
   Section,
   Inner,
@@ -15,14 +17,10 @@ import {
 } from './styles';
 
 const Hero = () => {
-  const scrollToSection = (id) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <Section id="hero" data-testid="hero">
-      <Inner data-testid="hero-content">
+      <SectionReveal threshold={0.08}>
+        <Inner data-testid="hero-content">
         <VisualCol data-testid="hero-visual">
           <WireframeGlobe maxWidth="440px" data-testid="hero-globe-wrap" />
         </VisualCol>
@@ -52,7 +50,8 @@ const Hero = () => {
             </BtnSecondary>
           </Actions>
         </TextCol>
-      </Inner>
+        </Inner>
+      </SectionReveal>
     </Section>
   );
 };

@@ -4,7 +4,8 @@ import { theme } from "../../styles/theme";
 export const Section = styled.section`
   background: ${theme.colors.bg};
   min-height: 100vh;
-  scroll-margin-top: 82px;
+  scroll-snap-align: start;
+  scroll-margin-top: clamp(60px, 10vw, 76px);
   padding: 4.75rem 1.5rem 5rem;
   position: relative;
   overflow: hidden;

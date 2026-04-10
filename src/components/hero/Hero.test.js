@@ -32,23 +32,23 @@ describe("Hero", () => {
   });
 
   it("scrolls to contact section when primary CTA is clicked", async () => {
+    window.scrollTo.mockClear();
     document.body.innerHTML = '<div id="contacto"></div>';
-    const el = document.getElementById("contacto");
     render(<Hero />);
 
     await userEvent.click(screen.getByTestId("hero-cta-contact"));
-    expect(el.scrollIntoView).toHaveBeenCalled();
+    expect(window.scrollTo).toHaveBeenCalled();
 
     document.body.innerHTML = "";
   });
 
   it("scrolls to team section when secondary CTA is clicked", async () => {
+    window.scrollTo.mockClear();
     document.body.innerHTML = '<div id="equipo"></div>';
-    const el = document.getElementById("equipo");
     render(<Hero />);
 
     await userEvent.click(screen.getByTestId("hero-cta-about"));
-    expect(el.scrollIntoView).toHaveBeenCalled();
+    expect(window.scrollTo).toHaveBeenCalled();
 
     document.body.innerHTML = "";
   });

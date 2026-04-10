@@ -25,13 +25,13 @@ describe('Navbar', () => {
     expect(screen.getByTestId('navbar-menu-toggle')).toBeInTheDocument();
   });
 
-  it('invokes scrollIntoView when nav link target exists', async () => {
+  it('scrolls to section when nav link target exists', async () => {
+    window.scrollTo.mockClear();
     document.body.innerHTML = '<div id="equipo"></div>';
-    const equipoEl = document.getElementById('equipo');
     render(<Navbar />);
 
     await userEvent.click(screen.getByTestId('navbar-link-about'));
-    expect(equipoEl.scrollIntoView).toHaveBeenCalled();
+    expect(window.scrollTo).toHaveBeenCalled();
 
     document.body.innerHTML = '';
   });

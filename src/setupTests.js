@@ -4,10 +4,29 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 
-// Mock IntersectionObserver (used for scroll-reveal animations)
-global.IntersectionObserver = class {
-  constructor() {}
-  observe() {}
+// Mock IntersectionObserver: treat all observed elements as in-view so reveal animations and hooks behave in tests
+global.IntersectionObserver = class IntersectionObserver {
+  constructor(callback) {
+    this.callback = callback;
+  }
+  observe(target) {
+    if (typeof this.callback === 'function') {
+      this.callback(
+        [
+          {
+            isIntersecting: true,
+            intersectionRatio: 1,
+            boundingClientRect: target.getBoundingClientRect?.() ?? {},
+            intersectionRect: {},
+            rootBounds: null,
+            target,
+            time: Date.now(),
+          },
+        ],
+        this,
+      );
+    }
+  }
   unobserve() {}
   disconnect() {}
 };

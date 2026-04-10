@@ -9,6 +9,8 @@ export const Section = styled.section`
   background: ${theme.colors.bg};
   padding: 6rem 1.5rem 4rem;
   overflow: hidden;
+  scroll-snap-align: start;
+  scroll-margin-top: clamp(60px, 10vw, 76px);
 
   @media (min-width: 900px) {
     padding: 5rem 2.5rem 3rem;

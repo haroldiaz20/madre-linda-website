@@ -28,6 +28,13 @@ export const Nav = styled.nav`
   @media (min-width: 769px) {
     padding: 1.1rem 2.5rem;
   }
+
+  @media (max-width: 768px) {
+    /* Keep mobile nav stable so fixed menu can cover viewport */
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+  }
 `;
 
 export const NavHotspot = styled.div`
@@ -78,6 +85,8 @@ export const Burger = styled.button`
   border: none;
   cursor: pointer;
   padding: 0.4rem;
+  position: relative;
+  z-index: 1003;
 
   @media (max-width: 768px) {
     display: flex;
@@ -140,6 +149,7 @@ export const Links = styled.ul`
     right: 0;
     bottom: 0;
     background: ${theme.colors.bgDeep};
+    z-index: 1002;
     flex-direction: column;
     justify-content: center;
     gap: 0.75rem;

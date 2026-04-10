@@ -12,6 +12,15 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: clamp(60px, 10vw, 76px);
+    scroll-snap-type: y proximity;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+      scroll-snap-type: none;
+    }
   }
 
   body {
