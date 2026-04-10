@@ -1,4 +1,5 @@
 import React from 'react';
+import SectionReveal from '../common/SectionReveal';
 import {
   Section,
   BgGlobeHint,
@@ -105,11 +106,12 @@ const Clients = () => {
       </BgGlobeHint>
 
       <NarrowWrap data-testid="clients-container">
-        <Header data-testid="clients-header">
-          <Title data-testid="clients-title">Servicios</Title>
-        </Header>
+        <SectionReveal threshold={0.12} rootMargin="0px 0px -6% 0px">
+          <Header data-testid="clients-header">
+            <Title data-testid="clients-title">Servicios</Title>
+          </Header>
 
-        <Grid data-testid="clients-carousel-shell">
+          <Grid data-testid="clients-carousel-shell">
           {SERVICES.map(({ id, label, Icon, asset, alt }) => (
             <ServiceCard key={id} data-testid={`clients-logo-${id}`}>
               <IconWrap>
@@ -128,7 +130,8 @@ const Clients = () => {
               <Label>{label}</Label>
             </ServiceCard>
           ))}
-        </Grid>
+          </Grid>
+        </SectionReveal>
       </NarrowWrap>
     </Section>
   );

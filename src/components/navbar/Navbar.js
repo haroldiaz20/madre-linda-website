@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { scrollToSection } from '../../utils/scrollToSection';
 import {
   Nav,
   NavHotspot,
@@ -39,11 +40,19 @@ const Navbar = () => {
     if (hero) setHeroRef(hero);
   }, [setHeroRef]);
 
-  const scrollToSection = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+  useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (!isMobile) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    if (menuOpen) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = previousOverflow || '';
+    return () => {
+      document.body.style.overflow = previousOverflow || '';
+    };
+  }, [menuOpen]);
+
+  const handleScrollToSection = (id) => {
+    scrollToSection(id);
     setMenuOpen(false);
   };
 
@@ -68,7 +77,7 @@ const Navbar = () => {
       >
         <Brand
           $scale={brandScale}
-          onClick={() => scrollToSection('hero')}
+          onClick={() => handleScrollToSection('hero')}
           data-testid="navbar-brand"
         >
           <Logo
@@ -98,7 +107,7 @@ const Navbar = () => {
             <button
               type="button"
               data-testid="navbar-link-home"
-              onClick={() => scrollToSection('hero')}
+              onClick={() => handleScrollToSection('hero')}
             >
               Inicio
             </button>
@@ -107,7 +116,7 @@ const Navbar = () => {
             <button
               type="button"
               data-testid="navbar-link-about"
-              onClick={() => scrollToSection('equipo')}
+              onClick={() => handleScrollToSection('equipo')}
             >
               Equipo
             </button>
@@ -116,7 +125,7 @@ const Navbar = () => {
             <button
               type="button"
               data-testid="navbar-link-clients"
-              onClick={() => scrollToSection('servicios')}
+              onClick={() => handleScrollToSection('servicios')}
             >
               Servicios
             </button>
@@ -125,7 +134,7 @@ const Navbar = () => {
             <CtaButton
               type="button"
               data-testid="navbar-cta-contact"
-              onClick={() => scrollToSection('contacto')}
+              onClick={() => handleScrollToSection('contacto')}
             >
               Contacto
             </CtaButton>

@@ -1,20 +1,42 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { theme } from "../../styles/theme";
+
+const avatarBounceIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(26px) scale(0.92);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.03);
+  }
+  75% {
+    transform: translateY(4px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+`;
 
 export const Section = styled.section`
   background: ${theme.colors.bg};
   min-height: 100vh;
-  padding: 4.25rem 1.5rem 4.25rem;
+  padding: 2.2rem 1.5rem 4.25rem;
   position: relative;
+  scroll-snap-align: start;
+  scroll-margin-top: clamp(60px, 10vw, 76px);
 
   @media (min-width: 768px) {
-    padding: 4.6rem 2.5rem 4.8rem;
+    padding: 2.5rem 2.5rem 4.8rem;
   }
 `;
 
 export const Container = styled.div`
   max-width: ${theme.maxWidth};
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 `;
 
 export const Header = styled.header`
@@ -63,6 +85,20 @@ export const PhotoWrap = styled.div`
   overflow: hidden;
   border-radius: 4px;
   background: ${theme.colors.bgDeep};
+  opacity: 0;
+  transform: translateY(20px) scale(0.94);
+  ${(p) =>
+    p.$animate &&
+    css`
+      animation: ${avatarBounceIn} 860ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation-delay: ${p.$delay || 0}ms;
+    `}
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 `;
 
 export const Photo = styled.img`

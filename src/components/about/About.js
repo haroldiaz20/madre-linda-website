@@ -1,4 +1,6 @@
 import React from "react";
+import { useInView } from "react-intersection-observer";
+import SectionReveal from "../common/SectionReveal";
 import {
   Section,
   Container,
@@ -37,17 +39,23 @@ const TEAM = [
 ];
 
 const About = () => {
-  return (
-    <Section id="equipo" data-testid="about">
-      <Container data-testid="about-container">
-        <Header data-testid="about-header">
-          <Title data-testid="about-title">Conoce al equipo</Title>
-        </Header>
+  const { ref: sectionRef, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.25,
+  });
 
-        <Grid data-testid="about-feature-grid">
+  return (
+    <Section id="equipo" data-testid="about" ref={sectionRef}>
+      <Container data-testid="about-container">
+        <SectionReveal threshold={0.15} rootMargin="0px 0px -6% 0px">
+          <Header data-testid="about-header">
+            <Title data-testid="about-title">Conoce al equipo</Title>
+          </Header>
+
+          <Grid data-testid="about-feature-grid">
           {TEAM.map((member, index) => (
             <Card key={member.key} data-testid={`about-feature-card-${index}`}>
-              <PhotoWrap>
+              <PhotoWrap $delay={index * 70} $animate={inView}>
                 <Photo
                   src={member.image}
                   alt={member.name}
@@ -60,7 +68,8 @@ const About = () => {
               <Role>{member.role}</Role>
             </Card>
           ))}
-        </Grid>
+          </Grid>
+        </SectionReveal>
       </Container>
     </Section>
   );

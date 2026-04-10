@@ -9,6 +9,8 @@ export const Section = styled.section`
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  scroll-snap-align: start;
+  scroll-margin-top: clamp(60px, 10vw, 76px);
 
   @media (min-width: 768px) {
     padding: 5rem 0 0;
